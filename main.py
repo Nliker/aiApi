@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import joblib
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
-from typing import List
+from typing import List, Optional
 
 
 class TextDto(BaseModel):
@@ -12,9 +12,12 @@ class TextDto(BaseModel):
     Right: float
     Bottom: float
     Color: str
-    Family: str
+    Family: Optional[str] = None
     Size: str
     LineSpace: str
+    
+    class Config:
+        extra = "allow"  # Allow additional fields
 
 
 class requestDto(BaseModel):
