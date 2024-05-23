@@ -76,7 +76,6 @@ async def postAi(request: requestDto) -> IdDto:
     
     ids = []
     for i in indices:
-        templateId = app.y.iloc[i].values
-        ids.append(templateId)
-    
+        templateId = app.y.iloc[i].values.tolist()
+        ids.extend(templateId)
     return IdDto(Predicted_TemplateId=ids)
